@@ -262,22 +262,29 @@ button {
 .rank-strip {
   position: relative;
   z-index: 2;
-  display: grid;
-  grid-template-columns: repeat(5, minmax(180px, 1fr));
-  gap: 14px;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 12px;
   margin-top: auto;
   padding-top: 42px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.rank-strip::-webkit-scrollbar {
+  display: none;
 }
 
 .rank-card {
-  min-height: 128px;
+  flex: 1 0 118px;
+  min-height: 124px;
   display: grid;
   align-content: center;
   justify-items: start;
-  gap: 8px;
+  gap: 7px;
   overflow: hidden;
   position: relative;
-  padding: 18px;
+  padding: 16px;
   border-radius: 22px;
   border: 1px solid rgba(115, 220, 255, 0.16);
   background:
@@ -290,8 +297,8 @@ button {
   content: "";
   position: absolute;
   inset: 18px 18px auto auto;
-  width: 52px;
-  height: 52px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 1px solid rgba(115, 220, 255, 0.26);
   background: rgba(66, 199, 255, 0.08);
@@ -307,7 +314,7 @@ button {
 .rank-card h2 {
   margin: 0;
   color: #fff;
-  font-size: 20px;
+  font-size: clamp(16px, 1.35vw, 20px);
   font-weight: 950;
   letter-spacing: 0;
 }
@@ -321,8 +328,8 @@ button {
 }
 
 .rank-icon {
-  width: 56px;
-  height: 46px;
+  width: 50px;
+  height: 42px;
 }
 
 .rank-icon span,
@@ -339,19 +346,19 @@ button {
 
 .rank-icon span {
   bottom: 4px;
-  width: 56px;
+  width: 50px;
 }
 
 .rank-icon::before {
-  bottom: 20px;
-  width: 42px;
-  left: 7px;
+  bottom: 18px;
+  width: 38px;
+  left: 6px;
 }
 
 .rank-icon::after {
-  bottom: 36px;
-  width: 28px;
-  left: 14px;
+  bottom: 32px;
+  width: 24px;
+  left: 13px;
 }
 
 @media (min-width: 901px) and (max-height: 780px) {
@@ -393,8 +400,9 @@ button {
   }
 
   .rank-card {
-    min-height: 110px;
+    min-height: 104px;
     border-radius: 18px;
+    padding: 14px;
   }
 
   .rank-icon {
@@ -419,37 +427,54 @@ button {
   }
 }
 
-.level-one {
-  color: #6bbdff;
-}
-
-.level-two {
-  color: #58d2ff;
+.rank-bronze {
+  color: #d99765;
   background:
-    radial-gradient(circle at 82% 18%, rgba(88, 210, 255, 0.32), transparent 4.6rem),
-    linear-gradient(180deg, rgba(12, 47, 77, 0.94), rgba(5, 14, 27, 0.95));
+    radial-gradient(circle at 82% 18%, rgba(217, 151, 101, 0.3), transparent 4.5rem),
+    linear-gradient(180deg, rgba(67, 39, 24, 0.92), rgba(18, 14, 14, 0.96));
 }
 
-.level-three {
+.rank-silver {
+  color: #d9e4ec;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(217, 228, 236, 0.32), transparent 4.5rem),
+    linear-gradient(180deg, rgba(62, 72, 83, 0.92), rgba(18, 22, 28, 0.96));
+}
+
+.rank-gold {
+  color: #ffd76a;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(255, 215, 106, 0.36), transparent 4.5rem),
+    linear-gradient(180deg, rgba(82, 60, 13, 0.94), rgba(24, 19, 10, 0.96));
+}
+
+.rank-platinum {
+  color: #c7f2ff;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(199, 242, 255, 0.36), transparent 4.5rem),
+    linear-gradient(180deg, rgba(43, 79, 96, 0.94), rgba(12, 25, 34, 0.96));
+}
+
+.rank-emerald {
+  color: #55f0b0;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(85, 240, 176, 0.34), transparent 4.5rem),
+    linear-gradient(180deg, rgba(18, 82, 58, 0.94), rgba(7, 25, 21, 0.96));
+}
+
+.rank-master {
   color: #73dcff;
   background:
-    radial-gradient(circle at 82% 18%, rgba(115, 220, 255, 0.36), transparent 4.6rem),
-    linear-gradient(180deg, rgba(8, 59, 98, 0.94), rgba(4, 18, 34, 0.95));
+    radial-gradient(circle at 82% 18%, rgba(115, 220, 255, 0.38), transparent 4.5rem),
+    linear-gradient(180deg, rgba(10, 78, 126, 0.94), rgba(4, 20, 38, 0.96));
 }
 
-.level-four {
-  color: #9be8ff;
-  background:
-    radial-gradient(circle at 82% 18%, rgba(155, 232, 255, 0.4), transparent 4.6rem),
-    linear-gradient(180deg, rgba(10, 78, 126, 0.94), rgba(4, 20, 38, 0.95));
-}
-
-.level-five {
-  color: #d4f6ff;
+.rank-champion {
+  color: #f7fbff;
   border-color: rgba(115, 220, 255, 0.34);
   background:
-    radial-gradient(circle at 82% 18%, rgba(212, 246, 255, 0.48), transparent 4.8rem),
-    linear-gradient(180deg, rgba(16, 103, 165, 0.94), rgba(5, 27, 50, 0.96));
+    radial-gradient(circle at 82% 18%, rgba(115, 220, 255, 0.42), transparent 4.5rem),
+    linear-gradient(180deg, rgba(12, 105, 176, 0.94), rgba(5, 27, 50, 0.96));
 }
 
 @media (max-width: 900px) {
@@ -463,14 +488,12 @@ button {
   }
 
   .rank-strip {
-    grid-template-columns: repeat(5, 200px);
-    overflow-x: auto;
     padding-bottom: 10px;
-    scrollbar-width: none;
+    padding-right: 2px;
   }
 
-  .rank-strip::-webkit-scrollbar {
-    display: none;
+  .rank-card {
+    flex-basis: 170px;
   }
 }
 

@@ -7,11 +7,13 @@ const stripeLink =
   "https://buy.stripe.com/test_8x2bJ02PE3eRcGDb741RC00";
 
 const ranks = [
-  { name: "Lobby", steps: "0-499", tone: "level-one" },
-  { name: "Landing", steps: "500+", tone: "level-two" },
-  { name: "Tower", steps: "1,500+", tone: "level-three" },
-  { name: "Skyline", steps: "3,000+", tone: "level-four" },
-  { name: "Summit", steps: "5,000+", tone: "level-five" },
+  { name: "Bronze", steps: "0-499", tone: "rank-bronze" },
+  { name: "Silver", steps: "500+", tone: "rank-silver" },
+  { name: "Gold", steps: "1,500+", tone: "rank-gold" },
+  { name: "Platinum", steps: "3,000+", tone: "rank-platinum" },
+  { name: "Emerald", steps: "5,000+", tone: "rank-emerald" },
+  { name: "Master", steps: "7,500+", tone: "rank-master" },
+  { name: "Champion", steps: "10,000+", tone: "rank-champion" },
 ];
 
 export default function Home() {
