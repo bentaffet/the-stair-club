@@ -7,13 +7,13 @@ const stripeLink =
   "https://buy.stripe.com/test_8x2bJ02PE3eRcGDb741RC00";
 
 const ranks = [
-  { name: "Bronze", steps: "0-499", tone: "rank-bronze" },
-  { name: "Silver", steps: "500+", tone: "rank-silver" },
-  { name: "Gold", steps: "1,500+", tone: "rank-gold" },
-  { name: "Platinum", steps: "3,000+", tone: "rank-platinum" },
-  { name: "Emerald", steps: "5,000+", tone: "rank-emerald" },
-  { name: "Master", steps: "7,500+", tone: "rank-master" },
-  { name: "Champion", steps: "10,000+", tone: "rank-champion" },
+  { name: "Bronze", tone: "rank-bronze" },
+  { name: "Silver", tone: "rank-silver" },
+  { name: "Gold", tone: "rank-gold" },
+  { name: "Platinum", tone: "rank-platinum" },
+  { name: "Emerald", tone: "rank-emerald" },
+  { name: "Master", tone: "rank-master" },
+  { name: "Champion", tone: "rank-champion" },
 ];
 
 export default function Home() {
@@ -120,7 +120,6 @@ export default function Home() {
                 <span />
               </div>
               <h2>{rank.name}</h2>
-              <p>{rank.steps} stairs</p>
             </article>
           ))}
         </section>
