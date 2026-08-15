@@ -4,7 +4,7 @@ import { FormEvent, useState } from "react";
 
 const stripeLink =
   process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK ||
-  "https://buy.stripe.com/test_8x2bJ02PE3eRcGDb741RC00";
+  "https://buy.stripe.com/5kQcN4dCaglu0Moaba43S00";
 
 const ranks = [
   { name: "Bronze", tone: "rank-bronze" },
