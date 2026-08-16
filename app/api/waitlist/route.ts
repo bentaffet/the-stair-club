@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: Request) {
-  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseUrl = process.env.SUPABASE_URL?.replace(/\/$/, "");
   const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!supabaseUrl || !serviceRoleKey) {
@@ -23,23 +23,38 @@ export async function POST(request: Request) {
     );
   }
 
-  const response = await fetch(`${supabaseUrl}/rest/v1/waitlist`, {
-    method: "POST",
-    headers: {
-      apikey: serviceRoleKey,
-      Authorization: `Bearer ${serviceRoleKey}`,
-      "Content-Type": "application/json",
-      Prefer: "return=minimal",
-    },
-    body: JSON.stringify({
-      email,
-      source: "landing_page",
-    }),
-  });
+  let response: Response;
+  try {
+    response = await fetch(`${supabaseUrl}/rest/v1/waitlist`, {
+      method: "POST",
+      headers: {
+        apikey: serviceRoleKey,
+        Authorization: `Bearer ${serviceRoleKey}`,
+        "Content-Type": "application/json",
+        Prefer: "resolution=ignore-duplicates,return=minimal",
+      },
+      body: JSON.stringify({
+        email,
+        source: "landing_page",
+      }),
+    });
+  } catch (error) {
+    console.error("Waitlist Supabase request failed", error);
+    return NextResponse.json(
+      { error: "Unable to reach waitlist database." },
+      { status: 502 },
+    );
+  }
 
   if (response.ok || response.status === 409) {
     return NextResponse.json({ ok: true });
   }
+
+  const details = await response.text().catch(() => "");
+  console.error("Waitlist Supabase insert failed", {
+    status: response.status,
+    details,
+  });
 
   return NextResponse.json(
     { error: "Unable to save email address." },
